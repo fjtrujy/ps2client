@@ -11,7 +11,7 @@
 
  char hostname[256] = { "192.168.0.10" };
 
- int timeout = -1;
+ int __timeout = -1;
 
  int main(int argc, char **argv, char **env) { int loop0 = 0;
 
@@ -50,7 +50,7 @@
     if (argc == loop0) { printf("Error: No timeout was supplied the '-t' option.\n"); print_usage(); return -1; }
 
     // Set the timeout to the supplied value.
-    timeout = atoi(argv[loop0]);
+    __timeout = atoi(argv[loop0]);
 
    }
 
@@ -76,26 +76,26 @@
   if (ps2link_connect(hostname) < 0) { printf("Error: Could not connect to the ps2link server. (%s)\n", hostname); return -1; }
 
   // Perform the requested command.
-  if (strcmp(argv[-1], "reset")    == 0) { ps2link_command_reset(); timeout = 0;                            } else
+  if (strcmp(argv[-1], "reset")    == 0) { ps2link_command_reset(); __timeout = 0;                            } else
   if (strcmp(argv[-1], "execiop")  == 0) { ps2link_command_execiop(argc, argv);                             } else
   if (strcmp(argv[-1], "execee")   == 0) { ps2link_command_execee(argc, argv);                              } else
-  if (strcmp(argv[-1], "poweroff") == 0) { ps2link_command_poweroff(); timeout = 0;                         } else
-  if (strcmp(argv[-1], "scrdump")  == 0) { ps2link_command_scrdump(); timeout = 0;                          } else
-  if (strcmp(argv[-1], "netdump")  == 0) { ps2link_command_netdump(); timeout = 0;                          } else
+  if (strcmp(argv[-1], "poweroff") == 0) { ps2link_command_poweroff(); __timeout = 0;                         } else
+  if (strcmp(argv[-1], "scrdump")  == 0) { ps2link_command_scrdump(); __timeout = 0;                          } else
+  if (strcmp(argv[-1], "netdump")  == 0) { ps2link_command_netdump(); __timeout = 0;                          } else
   if (strcmp(argv[-1], "dumpmem")  == 0) { ps2link_command_dumpmem(atoi(argv[0]), atoi(argv[1]), argv[2]);  } else
-  if (strcmp(argv[-1], "startvu")  == 0) { ps2link_command_startvu(atoi(argv[0])); timeout = 0;             } else
-  if (strcmp(argv[-1], "stopvu")   == 0) { ps2link_command_stopvu(atoi(argv[0])); timeout = 0;              } else
+  if (strcmp(argv[-1], "startvu")  == 0) { ps2link_command_startvu(atoi(argv[0])); __timeout = 0;             } else
+  if (strcmp(argv[-1], "stopvu")   == 0) { ps2link_command_stopvu(atoi(argv[0])); __timeout = 0;              } else
   if (strcmp(argv[-1], "dumpreg")  == 0) { ps2link_command_dumpreg(atoi(argv[0]), argv[1]);                 } else
   if (strcmp(argv[-1], "gsexec")   == 0) { ps2link_command_gsexec(atoi(argv[0]), argv[1]);                  } else
   if (strcmp(argv[-1], "writemem") == 0) { ps2link_command_writemem(atoi(argv[0]), atoi(argv[1]), argv[2]); } else
-  if (strcmp(argv[-1], "iopexcep") == 0) { ps2link_command_iopexcep(); timeout = 0;                         } else
+  if (strcmp(argv[-1], "iopexcep") == 0) { ps2link_command_iopexcep(); __timeout = 0;                         } else
   if (strcmp(argv[-1], "listen")   == 0) {                                                                  } else
 
   // An unknown command was requested.
   { printf("Error: Unknown command requested. (%s)\n", argv[-1]); print_usage(); return -1; }
 
   // Enter the main loop.
-  ps2link_mainloop(timeout);
+  ps2link_mainloop(__timeout);
 
   // Disconnect from the ps2link server.
   ps2link_disconnect();

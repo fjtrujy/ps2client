@@ -56,7 +56,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "192.168.1.150"
+            argument = "192.168.1.10"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

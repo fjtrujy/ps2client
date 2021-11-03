@@ -74,7 +74,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "192.168.1.150"
+            argument = "192.168.1.10"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -82,7 +82,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "host:homebrew.elf"
+            argument = "host:ps2tests.elf"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
